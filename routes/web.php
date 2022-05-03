@@ -25,7 +25,6 @@ Route::resource('product',ProductController::class);
 Route::resource('category',CategoryController::class);
 Route::get('images/{filename}', [ImageController::class,'displayImage'])->name('image.displayImage');
 Route::resource('users',UserController::class);
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
