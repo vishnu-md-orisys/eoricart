@@ -37,15 +37,15 @@ class CategoryController extends Controller
     {
     $request->validate([
     'category_name' => 'required',
-    'category_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+    'category_imagename' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
     ]);
     $Category = new category;
     $Category->category_name = $request->category_name;
-    $fileName = time().$request->file('category_image')->getClientOriginalName();
-    $path = $request->file('category_image')->storeAs('images', $fileName, 'public');
-    $Category->category_image= '/storage/'.$path;
+    $fileName = time().$request->file('category_imagename')->getClientOriginalName();
+    $path = $request->file('category_imagename')->storeAs('images', $fileName, 'public');
+    $Category->category_imagename= '/storage/'.$path;
     $Category->save();
-    return redirect()->route('admin.categorylist')
+    return redirect()->route('category.index')
     ->with('success','category has been created successfully.');
     }
     /**
@@ -56,7 +56,7 @@ class CategoryController extends Controller
     */
     public function show(category $Category)
     {
-    return view('categories.show',compact('Category'));
+    return view('admin.show',compact('Category'));
     } 
     /**
     * Show the form for editing the specified resource.
@@ -79,27 +79,27 @@ class CategoryController extends Controller
     {
     $request->validate([
         'category_name' => 'required',
-        'category_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+        'category_imagename' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ]);
-        $Category = new category;
+        $Category = category::find($id);
         $Category->category_name = $request->category_name;
-        $fileName = time().$request->file('category_image')->getClientOriginalName();
-        $path = $request->file('category_image')->storeAs('images', $fileName, 'public');
-        $Category->category_image= '/storage/'.$path;
+        $fileName = time().$request->file('category_imagename')->getClientOriginalName();
+        $path = $request->file('category_imagename')->storeAs('images', $fileName, 'public');
+        $Category->category_imagename= '/storage/'.$path;
         $Category->save();
-        return redirect()->route('admin.categorylist')
+        return redirect()->route('category.index')
         ->with('success','category has been created successfully.');
         }
     /**
     * Remove the specified resource from storage.
     *
-    * @param  \App\product  $Product
+    * @param  \App\category  $Category
     * @return \Illuminate\Http\Response
     */
-    public function destroy(category $Categoryt)
+    public function destroy(category $Category)
     {
         $Category->delete();
-    return redirect()->route('admin.categorylist')
+    return redirect()->route('category.index')
     ->with('success','Category has been deleted successfully');
     }
     }

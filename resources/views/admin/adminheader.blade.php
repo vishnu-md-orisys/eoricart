@@ -14,9 +14,22 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
+          @if(auth()->user()->role_id == config('constants.ROLES.ADMIN'))
           <li class="active"><a href="{{route('product.index')}}">Products</a></li>
-          <li class=""><a href="categorylist">Categories</a></li>
-        </ul>
+          <li class=""><a href="{{route('category.index')}}">Categories</a></li>
+          @endif
+          @if(auth()->user()->role_id == config('constants.ROLES.CUSTOMER'))
+
+          <li class="active"><a href="{{route('users.index')}}">Home</a></li>
+          <li class=""><a href="#">Orders</a></li>
+          </ul>
+         <form class="navbar-form navbar-left" action="#">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+          @endif
         
         <ul class="nav navbar-nav navbar-right">
           @if (Route::has('login'))

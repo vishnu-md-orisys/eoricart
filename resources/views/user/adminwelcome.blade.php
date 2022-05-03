@@ -20,7 +20,6 @@
     @yield('admin.categorylist')
     @yield('admin.categoryform')
     @yield('admin.editcategory')
-    @yield('admin.userhome')
 </body>
 <style>
     .custom-login{

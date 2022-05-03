@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $fillable = [
+        'product_name',
+        'product_description',
+        'product_price'
+    ];
     use HasFactory;
     public function categories_products(){
-        return this->hasMany(Categories_product::class);
+        return $this->hasMany(Categories_product::class);
     }
     public function product_images(){
-        return this->belongsTo(Product_image::class);
+        return $this->hasMany(Product_image::class);
     }
 }

@@ -9,9 +9,9 @@ class Order_detail extends Model
 {
     use HasFactory;
     public function user(){
-        return this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
     public function payment_details(){
-        return this->belongsTo(payment_details::class);
+        return $this->belongsTo(payment_details::class);
     }
 }

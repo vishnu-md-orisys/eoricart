@@ -1,8 +1,8 @@
 @extends('admin.adminwelcome')
 @section('admin.productlist')
-<div class="container">
-<a class="btn btn-success pull-right mb-2" href="{{route('product.create')}}"> Add product</a>
-
+<div class="pull-right mb-2">
+<a class="btn btn-success" href="{{route('product.create')}}"> Add product</a>
+</div>
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
 <p>{{ $message }}</p>
@@ -34,5 +34,4 @@
 @endforeach
 </table>
 {!! $products->links() !!}
-</div>
 @endsection

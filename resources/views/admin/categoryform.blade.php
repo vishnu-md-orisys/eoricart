@@ -10,7 +10,7 @@
        <div class="row">
        <div class="col-sm-4 col-sm-offset-4">
 
-        <form name="categoryForm" action="{{ route('category.index')}}" method="POST" id="categoryForm" enctype="multipart/form-data">
+        <form name="categoryForm" action="{{ route('category.store')}}" method="POST" id="categoryForm" enctype="multipart/form-data">
           @csrf
           @method('post')
             <div class="form-group">
@@ -22,8 +22,8 @@
             </div>
             <div class="form-group">
                 <label for="categoryImage">Category Image:</label>
-                <input type="file" class="form-control" id="category_image" name="category_image" >
-                @error('category_image')
+                <input type="file" class="form-control" id="category_imagename" name="category_imagename" >
+                @error('category_imagename')
               <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
               @enderror
               </div>

@@ -10,7 +10,7 @@
        <div class="row">
        <div class="col-sm-4 col-sm-offset-4">
 
-        <form action="{{ route('product.index')}}" method="POST" id="productForm" name="productForm" enctype="multipart/form-data">
+        <form action="{{ route('product.store')}}" method="POST" id="productForm" name="productForm" enctype="multipart/form-data">
           @csrf
           @method('post')
             <div class="form-group">
