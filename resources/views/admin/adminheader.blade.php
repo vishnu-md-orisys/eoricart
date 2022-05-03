@@ -20,7 +20,7 @@
           @endif
           @if(auth()->user()->role_id == config('constants.ROLES.CUSTOMER'))
 
-          <li class="active"><a href="{{route('users.index')}}">Home</a></li>
+          <li class=""><a href="{{route('users.index')}}">Home</a></li>
           <li class=""><a href="#">Orders</a></li>
           </ul>
          <form class="navbar-form navbar-left" action="#">
