@@ -13,7 +13,7 @@
           @method('put')
             <div class="form-group">
               <label for="categoryName">Category Name:</label>
-              <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Enter Product Name">
+              <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Enter Product Name" value={{$Category->category_name}}>
               @error('category_name')
               <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
               @enderror

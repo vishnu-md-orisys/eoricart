@@ -15,3 +15,4 @@ class Order_detail extends Model
         return $this->belongsTo(payment_details::class);
     }
 }
+

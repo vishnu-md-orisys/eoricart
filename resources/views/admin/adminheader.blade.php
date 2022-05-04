@@ -1,3 +1,7 @@
+<?php
+use App\Http\Controllers\ProductController;
+$total=ProductController::cartitem();
+?>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -13,13 +17,15 @@
   
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
+        
           @if(auth()->user()->role_id == config('constants.ROLES.ADMIN'))
+          <ul class="nav navbar-nav">
           <li class="active"><a href="{{route('product.index')}}">Products</a></li>
           <li class=""><a href="{{route('category.index')}}">Categories</a></li>
+        </ul>
           @endif
           @if(auth()->user()->role_id == config('constants.ROLES.CUSTOMER'))
-
+          <ul class="nav navbar-nav">
           <li class=""><a href="{{route('users.index')}}">Home</a></li>
           <li class=""><a href="#">Orders</a></li>
           </ul>
@@ -44,7 +50,7 @@
                     @endauth
             @endif
           <li>
-                        Welcome, {{ Auth::user()->name }}
+                        Welcome!<br> {{ Auth::user()->name }}
                              
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
@@ -55,7 +61,10 @@
                             {{ __('Log Out') }}
                     </a>
                     </form>
+                    <li><a href="#">cart({{$total}})</a></li>   
                     </div></li>
+                
+              
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

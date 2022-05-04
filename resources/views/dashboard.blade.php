@@ -1,8 +1,6 @@
 @extends('admin.adminwelcome')
 @section('admin.dashboard')
-<h1>You're logged in!<h2>
-@endsection
-
+    @endsection
 {{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">

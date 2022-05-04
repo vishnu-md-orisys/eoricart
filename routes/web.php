@@ -28,24 +28,6 @@ Route::resource('users',UserController::class);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
 require __DIR__.'/auth.php';
 
-// // Route::get('/productlist', function () {
-// //     return view('admin.productlist');
-// // });
-// // Route::get('/product', function () {
-// //     return view('admin.productform');
-// // });
-// // Route::post('/product', function () {
-// //     return view('admin.productform');
-// // });
-// Route::get('/categorylist', function () {
-//     return view('admin.categorylist');
-// });
-// Route::get('/category', function () {
-//     return view('admin.categoryform');
-// });
-// Route::post('/category', function () {
-//     return view('admin.categoryform');
-// });
+Route::post('/add_to_cart',[ProductController::class,'addToCart']);

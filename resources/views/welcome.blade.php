@@ -13,7 +13,7 @@
 </head>
 <body>
     {{ View::make('header') }}
-    
+    @yield('admin.dashboard')
     {{ View::make('footer') }}
 </body>
 <style>

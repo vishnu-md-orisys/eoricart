@@ -12,7 +12,7 @@ class UserController extends Controller
 {
 $data['products'] = product::orderBy('id','desc')->paginate(5);
 return view('admin.userhome', $data);
-// $data=Product::all();
-// return view('admin.userhome',['products' => $data]);
 }
 }
+
+

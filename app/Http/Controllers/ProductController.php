@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\User;
+use App\Models\Cart_item;
 use App\Models\Product;
 use App\Models\Product_image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use session;
 
 
 class ProductController extends Controller
@@ -112,20 +117,28 @@ public function update(Request $request, $id)
     ->with('success','product has been updated successfully.');
     }
 
+    public function addToCart(Request $request){
+        if($request->session()->has('user'))
+        {
+            return redirect('/register');
+    }
+    else{
+        $cart=new Cart_item;
+        $cart->user_id=Auth::id();
+        $cart->product_id=$request->product_id;
+        $cart->quantity=1;
+        $cart->save();
+        Cart_item::create([
+    'user_id' => $cart->user_id, 'product_id' => $cart->product_id, 'quantity' => $cart->quantity
+    ]);
+        return redirect('/users');  
+    }
+    }
+    static function cartitem(){
+        $userId=Auth::id();
+        return Cart_item::where('user_id',$userId)->count();
+          }
 
-
-//     public function displayImage($filename)
-// {
-//     $path = storage_public('images/' . $filename);
-//     if (!File::exists($path)) {
-//         abort(404);
-//     }
-//     $file = File::get($path);
-//     $type = File::mimeType($path);
-//     $response = Response::make($file, 200);
-//     $response->header("Content-Type", $type);
-//     return $response;
-// }
 
     
 /**
