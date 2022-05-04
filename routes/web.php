@@ -31,3 +31,4 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::post('/add_to_cart',[ProductController::class,'addToCart']);
+Route::get('/mycart',[ProductController::class,'myCartDisplay']);

@@ -26,7 +26,7 @@ $total=ProductController::cartitem();
           @endif
           @if(auth()->user()->role_id == config('constants.ROLES.CUSTOMER'))
           <ul class="nav navbar-nav">
-          <li class=""><a href="{{route('users.index')}}">Home</a></li>
+          <li class="active"><a href="{{route('users.index')}}">Home</a></li>
           <li class=""><a href="#">Orders</a></li>
           </ul>
          <form class="navbar-form navbar-left" action="#">
@@ -40,6 +40,7 @@ $total=ProductController::cartitem();
         <ul class="nav navbar-nav navbar-right">
           @if (Route::has('login'))
                     @auth
+
                      <li>   <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a></li>
                     @else
                       <li>  <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a></li>
@@ -61,7 +62,7 @@ $total=ProductController::cartitem();
                             {{ __('Log Out') }}
                     </a>
                     </form>
-                    <li><a href="#">cart({{$total}})</a></li>   
+                    <li><a href="/mycart">cart({{$total}})</a></li>   
                     </div></li>
                 
               

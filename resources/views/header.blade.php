@@ -35,7 +35,7 @@
                         @endif
                     @endauth
             @endif
-          <li><a href="#">Cart</a></li>
+          <li><a href="/register">Cart(0)</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

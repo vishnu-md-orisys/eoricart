@@ -128,9 +128,6 @@ public function update(Request $request, $id)
         $cart->product_id=$request->product_id;
         $cart->quantity=1;
         $cart->save();
-        Cart_item::create([
-    'user_id' => $cart->user_id, 'product_id' => $cart->product_id, 'quantity' => $cart->quantity
-    ]);
         return redirect('/users');  
     }
     }
@@ -139,7 +136,10 @@ public function update(Request $request, $id)
         return Cart_item::where('user_id',$userId)->count();
           }
 
-
+          public function myCartDisplay()
+          {
+          return view('admin.mycart');
+          }
     
 /**
 * Remove the specified resource from storage.

@@ -21,6 +21,7 @@
     @yield('admin.categoryform')
     @yield('admin.editcategory')
     @yield('admin.userhome')
+    @yield('admin.mycart')
 </body>
 <style>
     .custom-login{
