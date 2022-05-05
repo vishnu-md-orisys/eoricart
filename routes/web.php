@@ -31,4 +31,6 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::post('/add_to_cart',[ProductController::class,'addToCart']);
-Route::get('/mycart',[ProductController::class,'myCartDisplay']);
+Route::get('/mycart',[ProductController::class,'myCartList'])->name('mycart');
+Route::delete('/cart_products/{product}', [ProductController::class,'cartdestroy']);
+Route::get('/ordernow',[ProductController::class,'orderNow']);

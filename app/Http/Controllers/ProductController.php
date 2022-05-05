@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Product_image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use session;
 
 
@@ -128,7 +129,7 @@ public function update(Request $request, $id)
         $cart->product_id=$request->product_id;
         $cart->quantity=1;
         $cart->save();
-        return redirect('/users');  
+        return redirect('/mycart');  
     }
     }
     static function cartitem(){
@@ -136,11 +137,28 @@ public function update(Request $request, $id)
         return Cart_item::where('user_id',$userId)->count();
           }
 
-          public function myCartDisplay()
+         public function myCartList()
           {
-          return view('admin.mycart');
+            $userId=Auth::id();
+            $user = Auth::user();
+            $products = $user->cart_products;   
+          //already made a many to many in user model functn(cart_products) so this line works 
+            return view('admin.mycart', ['products'=>$products]);
+                                                                    
+          }      
+          
+          
+          public function orderNow(){
+            {
+                $userId=Auth::id();
+                $user = Auth::user();
+                $products = $user->cart_products;   
+              //already made a many to many in user model functn(cart_products) so this line works 
+                return view('admin.ordernow', ['products'=>$products]);
+                                                                        
+              }  
           }
-    
+
 /**
 * Remove the specified resource from storage.
 *
@@ -152,5 +170,14 @@ public function destroy(product $Product)
     $Product->delete();
 return redirect()->route('product.index')
 ->with('success','Product has been deleted successfully');
+}
+
+
+public function cartdestroy(Product $product)
+{
+    $user = Auth::user();
+    $user->cart_products()->detach([$product->id]);
+    return redirect()->route('mycart')
+->with('success','Product removed successfully');
 }
 }

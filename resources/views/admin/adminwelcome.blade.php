@@ -22,11 +22,16 @@
     @yield('admin.editcategory')
     @yield('admin.userhome')
     @yield('admin.mycart')
+    @yield('admin.ordernow')
 </body>
 <style>
     .custom-login{
         height: 500px;
         padding-top:100px;
+    }
+    .cart-list-div{
+        margin-bottom: 20px;
+        padding-bottom: 20px;
     }
     </style>
 </html>
