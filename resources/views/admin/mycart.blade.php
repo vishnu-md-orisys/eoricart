@@ -3,7 +3,7 @@
 <div class="custom-product">
 <div class="row-sm-4">
 <div class="trending-wrapper">
-    <h4>Result For products</h4><br>
+    <h4 style="color:rgb(133, 155, 13)";>Result For products</h4><br>
     <a class="btn btn-success" href="/ordernow">Order Now</a><br><br>
     @foreach($products as $product)
     <div class="row searched-item cart-list-div">

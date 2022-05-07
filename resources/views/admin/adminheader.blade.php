@@ -2,7 +2,11 @@
 use App\Http\Controllers\ProductController;
 $total=ProductController::cartitem();
 ?>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="overflow:hidden;
+background-color:rgb(250,245,212);
+position:fixed;
+top:0;
+width:100%; z-index:5000;";>
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -20,20 +24,20 @@ $total=ProductController::cartitem();
         
           @if(auth()->user()->role_id == config('constants.ROLES.ADMIN'))
           <ul class="nav navbar-nav">
-          <li class="active"><a href="{{route('product.index')}}">Products</a></li>
-          <li class=""><a href="{{route('category.index')}}">Categories</a></li>
+          <li class="#"><a href="{{route('product.index')}}">Products</a></li>
+          <li class="#"><a href="{{route('category.index')}}">Categories</a></li>
         </ul>
           @endif
           @if(auth()->user()->role_id == config('constants.ROLES.CUSTOMER'))
           <ul class="nav navbar-nav">
-          <li class="active"><a href="{{route('users.index')}}">Home</a></li>
-          <li class=""><a href="#">Orders</a></li>
+          <li class="#"><a href="{{route('users.index')}}">Home</a></li>
+          <li class="#"><a href="#">Orders</a></li>
           </ul>
-         <form class="navbar-form navbar-left" action="#">
+         <form class="navbar-form navbar-left" action="/search"> 
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" name="query" class="form-control search-box" placeholder="Search">
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="submit" class="btn btn-default">Search</button>
         </form>
           @endif
         

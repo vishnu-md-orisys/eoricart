@@ -1,7 +1,7 @@
 @extends('admin.adminwelcome')
 @section('admin.productlist')
 <div class="container">
-<a class="btn btn-success pull-right mb-2" href="{{route('product.create')}}"> Add product</a>
+<a class="btn btn-success pull-right mb-2" href="{{route('product.create')}}" > Add product</a>
 
 @if ($message = Session::get('success'))
 <div class="alert alert-success">

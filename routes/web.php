@@ -5,6 +5,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\DeliveryaddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +36,7 @@ Route::post('/add_to_cart',[ProductController::class,'addToCart']);
 Route::get('/mycart',[ProductController::class,'myCartList'])->name('mycart');
 Route::delete('/cart_products/{product}', [ProductController::class,'cartdestroy']);
 Route::get('/ordernow',[ProductController::class,'orderNow']);
+Route::get('/deliveryaddress',[DeliveryaddressController::class,'create'])->name('deliveryaddress');
+Route::post('/deliveryaddress',[DeliveryaddressController::class,'store']);
+Route::post('/payment',[PaymentController::class,'store']);
+Route::get('/search',[ProductController::class,'search']);

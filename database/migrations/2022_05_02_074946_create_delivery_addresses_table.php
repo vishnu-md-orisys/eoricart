@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('fullname');
-            $table->integer('mobile');
+            $table->biginteger('mobile');
             $table->string('addressline1');
             $table->string('addressline2');
             $table->string('landmark');

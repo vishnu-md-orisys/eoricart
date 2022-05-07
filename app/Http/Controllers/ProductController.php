@@ -146,8 +146,6 @@ public function update(Request $request, $id)
             return view('admin.mycart', ['products'=>$products]);
                                                                     
           }      
-          
-          
           public function orderNow(){
             {
                 $userId=Auth::id();
@@ -155,8 +153,13 @@ public function update(Request $request, $id)
                 $products = $user->cart_products;   
               //already made a many to many in user model functn(cart_products) so this line works 
                 return view('admin.ordernow', ['products'=>$products]);
-                                                                        
               }  
+          }
+          public function search(Request $request)
+          {
+             $data = product::where('product_name','like','%'.$request->input('query').'%')
+            ->get();
+            return view('admin.search',['products'=>$data]);
           }
 
 /**
