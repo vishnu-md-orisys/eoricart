@@ -31,12 +31,12 @@
       <div class="row">
         <div class="col-sm-4 col-sm-offset-4">
     
-         <form action="/payment" method="POST" id="paymentForm" name="paymentForm">
+         <form action="/order" method="POST" id="paymentForm" name="paymentForm">
            @csrf
            @method('post')
            <h2>Payment Type</h2>
              <div class="form-group">
-              <input type="hidden" id="amount" name="amount" value={{$total }} >
+              <input type="hidden" id="total" name="total" value={{$total }} >
                 <input type="radio" id="paytype" name="paytype" value="POD" required>
                 <label for="paytype">Pay on Delivery</label><br>
                @error('paytype')

@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('payment_id');
+            $table->foreignId('payment_id')->nullable();
             $table->double('total');
             $table->integer('status');
             $table->timestamps();

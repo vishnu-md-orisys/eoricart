@@ -7,6 +7,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DeliveryaddressController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +39,6 @@ Route::delete('/cart_products/{product}', [ProductController::class,'cartdestroy
 Route::get('/ordernow',[ProductController::class,'orderNow']);
 Route::get('/deliveryaddress',[DeliveryaddressController::class,'create'])->name('deliveryaddress');
 Route::post('/deliveryaddress',[DeliveryaddressController::class,'store']);
-Route::post('/payment',[PaymentController::class,'store']);
+Route::post('/order',[OrderController::class,'store']);
+Route::get('/payment/{order_id}',[PaymentController::class,'update'])->name('payment');
 Route::get('/search',[ProductController::class,'search']);
