@@ -44,6 +44,7 @@ Route::post('/order',[OrderController::class,'store']);
 Route::get('/deliveryaddress',[DeliveryaddressController::class,'create'])->name('deliveryaddress');
 Route::post('/deliveryaddress',[DeliveryaddressController::class,'store']);
 
+Route::get('/orderedlist',[OrderController::class,'index'])->name('orderedlist');
 
 Route::get('/payment/{order_id}',[PaymentController::class,'update'])->name('payment');
 Route::get('/search',[ProductController::class,'search']);

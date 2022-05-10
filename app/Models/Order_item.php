@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Order_item extends Model
 {
     protected $fillable = [
-        'user_id',
-        'payment_id',
+        'order_id',
+        'product_id',
         'amount',
         'quantity'
     ];

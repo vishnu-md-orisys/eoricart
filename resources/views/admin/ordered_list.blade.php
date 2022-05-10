@@ -15,13 +15,7 @@
                 <h5>&#x20b9;{{$product->product_price}}</h5>
             </div>
                 </div>
-                <div class="col-sm-3">
-                    <form action="#" method="post">
-                        @csrf
-                        @method('post')
-                   <button class="btn btn-warning">Cancel Order</button>
-                    </form>
-                        </div>
+                
     </div>
     @endforeach
 </div>
