@@ -161,6 +161,12 @@ public function update(Request $request, $id)
             ->get();
             return view('admin.search',['products'=>$data]);
           }
+          public function ratingindex(Request $request, $id)
+          {
+            $data['products'] = product::find($id);
+            return view('admin.productreview',$data);
+          }
+
 
 /**
 * Remove the specified resource from storage.

@@ -7,10 +7,13 @@ use App\Models\Cart_item;
 use App\Models\Product;
 use App\Models\Order_detail;
 use App\Models\Payment_detail;
+use App\Models\Delivery_address;
 use App\Models\Order_item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use session;
+use App\Models\Product_image;
+use Illuminate\Support\Facades\DB;
 
 
 class OrderController extends Controller
@@ -21,10 +24,20 @@ class OrderController extends Controller
       $order_details = Order_detail::where('user_id',$user_id)->get();
       foreach ($order_details as $order_detail) 
       {
-      $order_products = Order_item::where('order_id',$order_detail->id)->get();
-      $products = Product::find($order_products->product_id);
+      $order_products = Order_item::where('order_id',$order_detail->id)->pluck('product_id')->toArray();
+      $data['products'] = Product::find($order_products);
+    //   dd($products);
       }
-      return view('admin.ordered_list', $products);
+      $deliveryadress=Delivery_address::where('user_id',$user_id)->get();
+      if($deliveryadress!=''){
+      $cartitems=Cart_item::where('user_id',$user_id)->get();
+      Cart_item::destroy($cartitems);
+      return view('admin.ordered_list', $data);
+      }
+      else{
+        return view('admin.deliveryaddress');
+      }
+
       
  }
 
@@ -53,3 +66,4 @@ class OrderController extends Controller
     }
 
 }
+

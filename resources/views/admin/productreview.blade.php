@@ -1,9 +1,9 @@
 @extends('admin.adminwelcome')
-@section('admin.ordered_list')
+@section('admin.productreview')
 <div class="custom-product">
 <div class="row-sm-4">
 <div class="trending-wrapper">
-   <h1> Your Orders</h1>
+   <h1> Product Review</h1>
     @foreach($products as $product)
     <div class="row searched-item cart-list-div">
         <div class="col-sm-3">
@@ -13,11 +13,8 @@
             <div class="">
                 <h2>{{$product->product_name}}</h2>
                 <h5>{{$product->product_description}}. &#x20b9;{{$product->product_price}}</h5>
-                <h5>Ordered on: {{$product->updated_at}}</h5>
-                
                 <div class="container">
                     <div class="star-widget">
-                        <a href="{{ url('rating/'.$product->id) }}" style="text-decoration: none">
                     <input type="radio" id="rate-5" name="rate" value="5" />
                     <label for="rate-5" class="fas fa-star">5 star</label>
                     <input type="radio" id="rate-4" name="rate" value="4" />
@@ -28,7 +25,6 @@
                     <label for="rate-2" class="fas fa-star">2 star</label>
                     <input type="radio" id="rate-1" name="rate" value="1" />
                     <label for="rate-1" class="fas fa-star">1 star</label>
-                </a>
                 </div>
                 </div>
                 

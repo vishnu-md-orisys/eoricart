@@ -28,9 +28,11 @@
     @yield('admin.userhome')
     @yield('admin.mycart')
     @yield('admin.ordernow')
+    @yield('admin.ordered_list')
     @yield('admin.deliveryaddress')
+    @yield('admin.productreview')
     </div>
-</body>
+    </body>
 <style>
     .custom-login{
         height: 500px;
@@ -43,5 +45,5 @@
     .search-box{
         width:500px !important;
     }
-    </style>
+   
 </html>

@@ -41,6 +41,8 @@ Route::delete('/cart_products/{product}', [ProductController::class,'cartdestroy
 Route::get('/ordernow',[ProductController::class,'orderNow']);
 Route::post('/order',[OrderController::class,'store']);
 
+Route::get('/rating/{product}', [ProductController::class,'ratingindex']);
+
 Route::get('/deliveryaddress',[DeliveryaddressController::class,'create'])->name('deliveryaddress');
 Route::post('/deliveryaddress',[DeliveryaddressController::class,'store']);
 
