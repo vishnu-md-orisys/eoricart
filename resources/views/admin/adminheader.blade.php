@@ -31,7 +31,7 @@ width:100%; z-index:5000;";>
           @if(auth()->user()->role_id == config('constants.ROLES.CUSTOMER'))
           <ul class="nav navbar-nav">
           <li class="#"><a href="{{route('users.index')}}">Home</a></li>
-          <li class="#"><a href="/orderedlist">Orders</a></li>
+          <li class="#"><a href="/orderlist">Orders</a></li>
           </ul>
          <form class="navbar-form navbar-left" action="/search"> 
           <div class="form-group">

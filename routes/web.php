@@ -42,11 +42,13 @@ Route::get('/ordernow',[ProductController::class,'orderNow']);
 Route::post('/order',[OrderController::class,'store']);
 
 Route::get('/rating/{product}', [ProductController::class,'ratingindex']);
+Route::post('/rating/{id}', [ProductController::class,'rating']);
 
 Route::get('/deliveryaddress',[DeliveryaddressController::class,'create'])->name('deliveryaddress');
 Route::post('/deliveryaddress',[DeliveryaddressController::class,'store']);
 
 Route::get('/orderedlist',[OrderController::class,'index'])->name('orderedlist');
+Route::get('/orderlist',[OrderController::class,'show']);
 
 Route::get('/payment/{order_id}',[PaymentController::class,'update'])->name('payment');
 Route::get('/search',[ProductController::class,'search']);

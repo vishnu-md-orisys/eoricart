@@ -45,5 +45,7 @@
     .search-box{
         width:500px !important;
     }
+
+</style>
    
 </html>

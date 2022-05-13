@@ -22,11 +22,16 @@ class OrderController extends Controller
  {
       $user_id=Auth::id();
       $order_details = Order_detail::where('user_id',$user_id)->get();
+      $data = [
+        'products' => []
+      ];
       foreach ($order_details as $order_detail) 
       {
       $order_products = Order_item::where('order_id',$order_detail->id)->pluck('product_id')->toArray();
-      $data['products'] = Product::find($order_products);
-    //   dd($products);
+      $products = Product::find($order_products);
+      foreach ($products as $product) {
+        $data['products'][] = $product;
+      }
       }
       $deliveryadress=Delivery_address::where('user_id',$user_id)->get();
       if($deliveryadress!=''){
@@ -36,11 +41,31 @@ class OrderController extends Controller
       }
       else{
         return view('admin.deliveryaddress');
-      }
-
-      
+      }    
  }
 
+
+ public function show()
+ {
+  $user_id=Auth::id();
+  $order_details = Order_detail::where('user_id',$user_id)->get();
+  $data = [
+    'products' => []
+  ];
+  foreach ($order_details as $order_detail) 
+  {
+  $order_products = Order_item::where('order_id',$order_detail->id)->pluck('product_id')->toArray();
+  $products = Product::find($order_products);
+  foreach ($products as $product) {
+    $data['products'][] = $product;
+  }
+  }
+ return view('admin.ordered_list', $data);
+
+ }
+
+
+ 
     public function store(Request $request)
     {
         $order = new order_detail;

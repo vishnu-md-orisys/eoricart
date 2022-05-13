@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Cart_item;
 use App\Models\Product;
 use App\Models\Product_image;
+use App\Models\Customer_review;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -146,7 +148,7 @@ public function update(Request $request, $id)
             return view('admin.mycart', ['products'=>$products]);
                                                                     
           }      
-          public function orderNow(){
+          public function orderNow()
             {
                 $userId=Auth::id();
                 $user = Auth::user();
@@ -154,17 +156,47 @@ public function update(Request $request, $id)
               //already made a many to many in user model functn(cart_products) so this line works 
                 return view('admin.ordernow', ['products'=>$products]);
               }  
-          }
+          
           public function search(Request $request)
           {
              $data = product::where('product_name','like','%'.$request->input('query').'%')
             ->get();
             return view('admin.search',['products'=>$data]);
           }
+        
+
           public function ratingindex(Request $request, $id)
           {
-            $data['products'] = product::find($id);
-            return view('admin.productreview',$data);
+            $data= product::where('id',$id)->get();
+            return view('admin.productreview',['products'=>$data]);
+          }
+          public function rating(Request $request, $id)
+          {
+            $request->validate([
+              'rating' => 'required'
+              ]);
+
+              $userid = Auth::id();
+              $rating = Customer_review::where('user_id',$userid)->where('product_id',$id)->first();
+              
+              if( isset($rating) && $userid ==  $rating->user_id &&  $id ==  $rating->product_id )
+              {
+              $newreview = Customer_review::where('product_id',$id)->first();
+              $newreview->rating = $request->rating;
+              $newreview->review = $request->review;
+              $newreview->save();
+              return redirect('/users');
+              }
+              else{
+
+              $review = new Customer_review;
+              $review->user_id = Auth::id();
+              $review->product_id = $id;
+              $review->rating = $request->rating;
+              $review->review = $request->review;
+              $review->save();
+              return redirect('/users');
+              }
           }
 
 

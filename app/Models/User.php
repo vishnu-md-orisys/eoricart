@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
     public function role(){
         return $this->hasMany(Role::class);
     }
@@ -20,6 +21,11 @@ class User extends Authenticatable
     public function delivery(){
         return $this->belongstoMany(Product::class,'delivery_addresses');
     }
+
+    public function review(){
+        return $this->belongstoMany(Product::class,'customer_review');
+    }
+    
     /**
      * The attributes that are mass assignable.
      *
