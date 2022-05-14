@@ -23,7 +23,10 @@ class User extends Authenticatable
     }
 
     public function review(){
-        return $this->belongstoMany(Product::class,'customer_review');
+        return $this->belongstoMany(Product::class,'customer_reviews');
+    }
+    public function cart_tables(){
+        return $this->belongstomany(Cart_item::class,'products');
     }
     
     /**

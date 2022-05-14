@@ -72,6 +72,20 @@
 @csrf
 @method('post')
 <input type="hidden" id="product_id" name="product_id" value={{$Product->id }}>
+<label for="quantity">Quantity</label>
+<select name="quantity" id="quantity">
+  <option selected hidden disabled>Choose quantity</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+</select>
 <button type="submit" class="btn btn-danger" onclick="return confirm('Adding to cart')">Add to Cart</button>
 </form>
 </td>

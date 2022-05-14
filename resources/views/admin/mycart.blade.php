@@ -14,6 +14,7 @@
             <div class="">
                 <h2>{{$product->product_name}}</h2>
                 <h5>{{$product->product_description}}</h5>
+                {{-- <h5>Quantity:{{$cart->quantity}}</h5> --}}
                 <h5>&#x20b9;{{$product->product_price}}</h5>
             </div>
                 </div>

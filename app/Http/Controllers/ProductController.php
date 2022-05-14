@@ -126,14 +126,26 @@ public function update(Request $request, $id)
             return redirect('/register');
     }
     else{
+        $userid = Auth::id();
         $cart=new Cart_item;
         $cart->user_id=Auth::id();
         $cart->product_id=$request->product_id;
-        $cart->quantity=1;
+        $cart->quantity=$request->quantity;
+        $cartitems=Cart_item::where('user_id',$userid)->where('product_id',$cart->product_id)->first();
+        if( isset($cartitems) &&  $userid ==   $cartitems->user_id &&  $cart->product_id ==  $cartitems->product_id )
+        {
+        $oldcart = Cart_item::where('user_id',$userid)->where('product_id',$cart->product_id)->first();
+        $oldcart->quantity +=  $cart->quantity  ;
+        $oldcart->save();
+        return redirect('/mycart');
+        }
+        else{
+
         $cart->save();
         return redirect('/mycart');  
     }
     }
+  }
     static function cartitem(){
         $userId=Auth::id();
         return Cart_item::where('user_id',$userId)->count();
@@ -143,9 +155,13 @@ public function update(Request $request, $id)
           {
             $userId=Auth::id();
             $user = Auth::user();
-            $products = $user->cart_products;   
+          //  $products = $user->cart_products;   
+            $carts = $user->cart_tables;  
+            dd($carts);
+
+            
           //already made a many to many in user model functn(cart_products) so this line works 
-            return view('admin.mycart', ['products'=>$products]);
+            return view('admin.mycart', ['products'=>  $carts]);
                                                                     
           }      
           public function orderNow()
@@ -181,7 +197,7 @@ public function update(Request $request, $id)
               
               if( isset($rating) && $userid ==  $rating->user_id &&  $id ==  $rating->product_id )
               {
-              $newreview = Customer_review::where('product_id',$id)->first();
+              $newreview = Customer_review::where('product_id',$id)->where('user_id',$userid)->first();
               $newreview->rating = $request->rating;
               $newreview->review = $request->review;
               $newreview->save();

@@ -7,7 +7,9 @@
             <tr>
                 <th>Product Image</th>
               <th>Product</th>
-              <th>price</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total Price</th>
             </tr>
           </thead>
          <?php $total = 0; ?>
@@ -18,13 +20,16 @@
               <td>{{$product->product_name}}<br><p>Description:</p>{{$product->product_description}}
             </td>
               <td>{{$product->product_price}}</td>
+              <td>sample</td>
+              <td>{{$product->product_price * 3 }} </td>
+
            <?php 
                    $total = $total + $product->product_price;
             ?>
              @endforeach
             </tr>
           </tbody>
-           <td colspan="3"> <h3 style="text-align: center">Total Amount= {{$total }}</h3><td>
+           <td colspan="5"> <h3 style="text-align: center">Total Amount= {{$total }}</h3><td>
         </table>
       </div>
       
