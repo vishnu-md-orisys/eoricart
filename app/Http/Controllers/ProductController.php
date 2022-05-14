@@ -155,13 +155,13 @@ public function update(Request $request, $id)
           {
             $userId=Auth::id();
             $user = Auth::user();
-          //  $products = $user->cart_products;   
-            $carts = $user->cart_tables;  
-            dd($carts);
+           $products = $user->cart_products;   
+            // $carts = $user->cart_tables;  
+            // dd($carts);
 
             
           //already made a many to many in user model functn(cart_products) so this line works 
-            return view('admin.mycart', ['products'=>  $carts]);
+            return view('admin.mycart', ['products'=>  $products]);
                                                                     
           }      
           public function orderNow()
