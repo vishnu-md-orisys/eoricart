@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Product_image;
+use App\Models\Customer_review;
 use File;
 use Response;
 

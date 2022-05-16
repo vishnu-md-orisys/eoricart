@@ -1,6 +1,6 @@
 @extends('admin.adminwelcome')
 @section('admin.dashboard')
-<h1>You're logged in!<h2>
+<h6>You're logged in!</h6>
 @endsection
 
 {{-- <x-app-layout>

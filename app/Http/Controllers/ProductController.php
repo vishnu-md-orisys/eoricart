@@ -8,7 +8,6 @@ use App\Models\Cart_item;
 use App\Models\Product;
 use App\Models\Product_image;
 use App\Models\Customer_review;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +23,7 @@ class ProductController extends Controller
 */
 public function index()
 {
-$data['products'] = product::orderBy('id','desc')->paginate(5);
+$data['products'] = product::orderBy('id','desc')->paginate(5); //admin view product listing
 return view('admin.productlist', $data);
 }
 /**
@@ -155,21 +154,19 @@ public function update(Request $request, $id)
           {
             $userId=Auth::id();
             $user = Auth::user();
-           $products = $user->cart_products;   
-            // $carts = $user->cart_tables;  
-            // dd($carts);
-
-            
+          //  $products = $user->cart_products;   
+          $products = Cart_item::where('user_id',Auth::user()->id)->with('product')->get();
+// dd($cartProducts);
           //already made a many to many in user model functn(cart_products) so this line works 
-            return view('admin.mycart', ['products'=>  $products]);
+          return view('admin.mycart', ['products'=>  $products]);
                                                                     
           }      
           public function orderNow()
             {
                 $userId=Auth::id();
                 $user = Auth::user();
-                $products = $user->cart_products;   
-              //already made a many to many in user model functn(cart_products) so this line works 
+                $products = Cart_item::where('user_id',Auth::user()->id)->with('product')->get();
+               //already made a many to many in user model functn(cart_products) so this line works 
                 return view('admin.ordernow', ['products'=>$products]);
               }  
           

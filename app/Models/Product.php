@@ -19,4 +19,11 @@ class Product extends Model
     public function product_images(){
         return $this->hasMany(Product_image::class);
     }
+    public function order_item(){
+        return $this->hasMany(Order_item::class);
+    }
+        public function customer_review(){
+            return $this->hasMany(Customer_review::class);
+ 
+    }
 }

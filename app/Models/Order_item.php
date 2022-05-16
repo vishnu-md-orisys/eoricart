@@ -20,6 +20,12 @@ class Order_item extends Model
     public function product(){
         return $this->hasMany(Product::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function products(){
+        return $this->belongsTo(Product::class);
+    }
 }
 
 

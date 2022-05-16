@@ -21,7 +21,7 @@ class OrderController extends Controller
       public function index()
  {
       $user_id=Auth::id();
-      $order_details = Order_detail::where('user_id',$user_id)->get();
+      $order_details = Order_detail::where('user_id',$user_id)->orderBy('id','desc')->get();
       $data = [
         'products' => []
       ];
@@ -30,17 +30,25 @@ class OrderController extends Controller
       $order_products = Order_item::where('order_id',$order_detail->id)->pluck('product_id')->toArray();
       $products = Product::find($order_products);
       foreach ($products as $product) {
+        $product->quantity  = Order_item::where('order_id',$order_detail->id)
+                              ->where('product_id',$product->id)
+                              ->value('quantity');
+        $product->order_time = Order_item::where('order_id',$order_detail->id)
+                             ->where('product_id',$product->id)
+                              ->value('created_at');
+                                             
         $data['products'][] = $product;
       }
+      
       }
-      $deliveryadress=Delivery_address::where('user_id',$user_id)->get();
-      if($deliveryadress!=''){
-      $cartitems=Cart_item::where('user_id',$user_id)->get();
-      Cart_item::destroy($cartitems);
-      return view('admin.ordered_list', $data);
+      $deliveryaddress=Delivery_address::where('user_id',$user_id)->first();
+      if($deliveryaddress == ''){
+        return view('admin.deliveryaddress');
       }
       else{
-        return view('admin.deliveryaddress');
+        $cartitems=Cart_item::where('user_id',$user_id)->get();
+      Cart_item::destroy($cartitems);
+      return view('admin.ordered_list', $data);
       }    
  }
 
@@ -48,7 +56,7 @@ class OrderController extends Controller
  public function show()
  {
   $user_id=Auth::id();
-  $order_details = Order_detail::where('user_id',$user_id)->get();
+  $order_details = Order_detail::where('user_id',$user_id)->orderBy('id','desc')->get();
   $data = [
     'products' => []
   ];
@@ -56,9 +64,18 @@ class OrderController extends Controller
   {
   $order_products = Order_item::where('order_id',$order_detail->id)->pluck('product_id')->toArray();
   $products = Product::find($order_products);
+
+
   foreach ($products as $product) {
+    $product->quantity  = Order_item::where('order_id',$order_detail->id)
+                          ->where('product_id',$product->id)
+                          ->value('quantity');
+    $product->order_time = Order_item::where('order_id',$order_detail->id)
+                          ->where('product_id',$product->id)
+                          ->value('created_at');
     $data['products'][] = $product;
   }
+  
   }
  return view('admin.ordered_list', $data);
 

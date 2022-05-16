@@ -13,6 +13,13 @@ use session;
 
 class DeliveryaddressController extends Controller
 {
+    public function index()
+    {
+     $userId=Auth::id();
+     $delivery_address= Delivery_address::where('user_id',$userId)->get();
+     return view('dashboard', $delivery_address);
+
+    }
     public function create()
     {
         $userId=Auth::id();
@@ -45,7 +52,7 @@ class DeliveryaddressController extends Controller
    $delivery_address-> country = $request-> country;
    $delivery_address-> pincode = $request-> pincode;
    $delivery_address->save();  
-    return redirect()->route('users.index')
+    return redirect()->route('orderedlist')
     ->with('successs','Ordered Succesfully');
     }
 }

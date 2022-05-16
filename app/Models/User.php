@@ -24,13 +24,15 @@ class User extends Authenticatable
         return $this->belongstoMany(Product::class,'delivery_addresses');
     }
 
-    public function review(){
+    public function customer_review(){
         return $this->belongstoMany(Product::class,'customer_reviews');
     }
-
-    public function cart_tables(){
-        return $this->belongstomany(Cart_item::class,'products');
+    public function order_item(){
+        return $this->hasMany(Order_item::class);
     }
+    // public function cart_tables(){
+    //     return $this->belongstomany(Cart_item::class,'products');
+    // }
     
     /**
      * The attributes that are mass assignable.

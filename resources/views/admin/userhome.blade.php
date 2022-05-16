@@ -67,6 +67,9 @@
 <tr>
     <td>Price: &#x20b9;{{$Product->product_price }}</td>
     </tr>
+    <tr>
+      <td>Rating:{{$Product->rating}}</td>
+      </tr>
 <td>
 <form action="/add_to_cart" method="POST">
 @csrf

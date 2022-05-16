@@ -16,15 +16,16 @@
           @foreach($products as $product)
           <tbody>
             <tr>
-                <td> <img src="{{ url('images/'.(($product->product_images)[0])->product_imagename) }}" style="width:200px; height:150px";></td>
-              <td>{{$product->product_name}}<br><p>Description:</p>{{$product->product_description}}
+                <td> <img src="{{ url('images/'.(($product->product->product_images)[0])->product_imagename) }}" style="width:200px; height:150px";></td>
+              <td>{{$product->product->product_name}}<br><p>Description:</p>{{$product->product->product_description}}
             </td>
-              <td>{{$product->product_price}}</td>
-              <td>sample</td>
-              <td>{{$product->product_price * 3 }} </td>
+              <td>{{$product->product->product_price}}</td>
+              <td>{{$product->quantity}}</td>
+              <?php $price= $product->product->product_price * $product->quantity; ?>
+              <td>{{$product->product->product_price * $product->quantity }} </td>
 
            <?php 
-                   $total = $total + $product->product_price;
+                   $total = $total + $price;
             ?>
              @endforeach
             </tr>

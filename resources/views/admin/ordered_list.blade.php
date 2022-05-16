@@ -4,7 +4,6 @@
 <div class="row-sm-4">
 <div class="trending-wrapper">
    <h1> Your Orders</h1>
-  
     @foreach($products as $product)
     <div style="border: 2px solid black;  border-collapse: collapse;";>
     <div class="row searched-item cart-list-div" >
@@ -14,8 +13,13 @@
         <div class="col-sm-4">
             <div class="">
                 <h2>{{$product->product_name}}</h2>
-                <h5>{{$product->product_description}}.
-                     &#x20b9;{{$product->product_price}}</h5>
+                <h5>{{$product->product_description}}.<br>
+                     &#x20b9;{{$product->product_price}}<br>
+                    Quantity: {{$product->quantity}}<br>
+                    Total Amount:{{$product->product_price * $product->quantity}}<br>
+                    Ordered on:{{$product->order_time}}
+                    </h5>
+
                 
                 <div class="container">
                     <div class="star-widget">
