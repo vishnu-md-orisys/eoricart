@@ -118,6 +118,36 @@ public function update(Request $request, $id)
     return redirect()->route('product.index')
     ->with('success','product has been updated successfully.');
     }
+    
+    
+    
+    public function editQuantity(Request $request){
+  //     if($request->session()->has('user'))
+  //     {
+  //         return redirect('/register');
+  // }
+  // else{
+      $userid = Auth::id();
+      $cart=new Cart_item;
+      $cart->user_id=Auth::id();
+      $cart->product_id=$request->product_id;
+      $cart->quantity=$request->quantity;
+      $cartitems=Cart_item::where('user_id',$userid)->where('product_id',$cart->product_id)->first();
+      if( isset($cartitems) &&  $userid ==   $cartitems->user_id &&  $cart->product_id ==  $cartitems->product_id )
+      {
+      $oldcart = Cart_item::where('user_id',$userid)->where('product_id',$cart->product_id)->first();
+      $oldcart->quantity=  $cart->quantity  ;
+      $oldcart->save();
+      return redirect('/mycart');
+      }
+      else{
+
+      $cart->save();
+      return redirect('/mycart');  
+  }
+  // }
+}
+
 
     public function addToCart(Request $request){
         if($request->session()->has('user'))
@@ -178,6 +208,11 @@ public function update(Request $request, $id)
           }
         
 
+          public function productdetails(Request $request, $id)
+          {
+            $data= product::where('id',$id)->get();
+            return view('admin.productdetails',['products'=>$data]);
+          }
           public function ratingindex(Request $request, $id)
           {
             $data= product::where('id',$id)->get();

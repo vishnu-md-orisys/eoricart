@@ -31,6 +31,7 @@
     @yield('admin.ordered_list')
     @yield('admin.deliveryaddress')
     @yield('admin.productreview')
+    @yield('admin.productdetails')
     </div>
     </body>
 <style>

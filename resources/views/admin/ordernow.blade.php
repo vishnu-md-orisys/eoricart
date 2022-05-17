@@ -16,7 +16,8 @@
           @foreach($products as $product)
           <tbody>
             <tr>
-                <td> <img src="{{ url('images/'.(($product->product->product_images)[0])->product_imagename) }}" style="width:200px; height:150px";></td>
+                <td>             <a href="{{ url('productdetails/'.$product->product->id) }}">
+                  <img src="{{ url('images/'.(($product->product->product_images)[0])->product_imagename) }}" style="width:200px; height:150px";> </a></td>
               <td>{{$product->product->product_name}}<br><p>Description:</p>{{$product->product->product_description}}
             </td>
               <td>{{$product->product->product_price}}</td>

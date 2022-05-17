@@ -20,11 +20,11 @@ class User extends Authenticatable
     public function cart_products(){
         return $this->belongstoMany(Product::class,'cart_items');
     }
-    public function delivery(){
+    public function deliveries(){
         return $this->belongstoMany(Product::class,'delivery_addresses');
     }
 
-    public function customer_review(){
+    public function customer_reviews(){
         return $this->belongstoMany(Product::class,'customer_reviews');
     }
     public function order_item(){

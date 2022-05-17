@@ -28,8 +28,10 @@
       <div class="carousel-inner">
        
           <div class="">
-          <img src="{{ url('images/'.(($Product->product_images)[0])->product_imagename) }}"  alt="" style="">
-          <div class="carousel-caption">
+            <a href="{{ url('productdetails/'.$Product->id) }}">
+                   <img src="{{ url('images/'.(($Product->product_images)[0])->product_imagename) }}"  alt="" style="">
+            </a>
+             <div class="carousel-caption">
             <h3 style="color: rgb(236, 201, 152)">{{ $Product->product_name }}</h3>
             <p style="color: rgb(236, 201, 152)">{{$Product->product_description }}</p>
           </div>
@@ -55,20 +57,32 @@
   
 <table>
   @foreach ($products as $Product)
+  
 <tr>
-    <td><img src="{{ url('images/'.(($Product->product_images)[0])->product_imagename) }}" style="width:200px; height:150px;" alt="" ></td>
-    </tr>
+    <td><a href="{{ url('productdetails/'.$Product->id) }}"><img src="{{ url('images/'.(($Product->product_images)[0])->product_imagename) }}" style="width:200px; height:150px;" alt="" ></td>
+    </a></tr>
 <tr>
-<td ><h3><span style=" font-weight:bold;color:rgb(82, 92, 44);"><i>{{ $Product->product_name }}<i></span></h3> </td>
+<td ><h3><span style=" font-weight:bold;color:rgb(82, 92, 44);"><i>
+  <a href="/productdetails/{$Product->id}" style="text-decoration: none" >{{ $Product->product_name }}</a>
+</i></span></h3> </td>
 </tr>
 <tr>
-<td>Product Details:{{$Product->product_description }}</td>
+<td>Product Details:{{$Product->product_description }}</td> 
 </tr>
 <tr>
     <td>Price: &#x20b9;{{$Product->product_price }}</td>
     </tr>
+    <?php $trating= 0; 
+    $tot=0;?>
     <tr>
-      <td>Rating:{{$Product->rating}}</td>
+      <td> Rating: 
+        @foreach ($Product->customer_reviews as $review)
+      <?php  $trating = $trating + $review->rating; 
+      $tot = $tot +1;
+      ?>
+        @endforeach
+        {{$trating/$tot}}/5(by {{$tot}} customers)
+      </td>
       </tr>
 <td>
 <form action="/add_to_cart" method="POST">

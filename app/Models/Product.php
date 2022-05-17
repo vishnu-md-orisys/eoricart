@@ -22,7 +22,7 @@ class Product extends Model
     public function order_item(){
         return $this->hasMany(Order_item::class);
     }
-        public function customer_review(){
+        public function customer_reviews(){
             return $this->hasMany(Customer_review::class);
  
     }
