@@ -57,7 +57,7 @@
         @foreach ($Product->customer_reviews as $review)
         <tr> <td> <h4 style="font-family:   Geneva, Verdana, sans-serif">  {{$review->user->name }} </h4><td></tr><br>
      <tr> <td>  Rating: {{$review->rating }} <td></tr><br>
-        <tr><td> <textarea disabled style="width:400px; height:auto"> {{$review->review }}</textarea></td></tr><br>
+        <tr><td> <textarea disabled style="width:400px; height:auto; resize: none;"> {{$review->review }}</textarea></td></tr><br>
         @endforeach
       
       @endforeach
